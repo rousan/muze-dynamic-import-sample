@@ -4,15 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const outFilePath = path.resolve(__dirname, 'public');
 
 module.exports = {
-  entry: {
-    line: ['regenerator-runtime', path.resolve(__dirname, './src/line.js')],
-    bar: ['regenerator-runtime', path.resolve(__dirname, './src/bar.js')],
-  },
+  entry: ['regenerator-runtime', path.resolve(__dirname, './src/index.js')],
   output: {
     path: outFilePath,
-    filename: '[name].js',
+    filename: 'bundle.js',
   },
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -34,10 +30,8 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        // Provide your node_modules path where @chartshq/muze
-        // package is installed.
         from: path.resolve('./node_modules', '@chartshq/muze/dist'),
-        to: 'examples/'
+        to: "."
       },
     ]),
   ],

@@ -1,9 +1,10 @@
-import muze from '@chartshq/muze';
 import '@chartshq/muze/dist/muze.css';
 
-// As the muze and DataModel are asynchronous, so we need to
-// use async-await syntax.
+async function importMuze() { return await import(/* webpackChunkName: "muze-import" */ '@chartshq/muze').then((module) => module.default);}
+
 async function myAsyncFn() {
+  const muze = await importMuze();
+  
   // Load the DataModel module.
   const DataModel = await muze.DataModel.onReady();
 
@@ -27,12 +28,11 @@ async function myAsyncFn() {
 
   canvas
     .data(dm) // Set data to the chart.
-    .rows(["Horsepower"]) // Fields drawn on Y axis.
-    .columns(["Origin"]) // Fields drawn on X axis.
+    .rows(["Acceleration"]) // Fields drawn on Y axis.
+    .columns(["Year"]) // Fields drawn on X axis.
     .width(500)
     .height(400)
     .mount("#chart"); // Specify an element to mount on using a CSS selector.
 }
 
-myAsyncFn()
-  .catch(console.error.bind(console));
+myAsyncFn().catch(console.error.bind(console));
