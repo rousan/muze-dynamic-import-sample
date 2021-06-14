@@ -34,6 +34,6 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "@chartshq/muze": "^2.0.0"
+    "@chartshq/muze": "git+https://bitbucket.org/dev-chartshq/muze-internal-releases.git#v3.0.0-alpha-2"
   }
 }
